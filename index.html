@@ -4,13 +4,23 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=1920, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bordspel</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
+    <script type="module" src="users.js"></script>
 </head>
 
 <body>
+    <nav class="row">
+        <div class="col-10"></div>
+        <div class="col-1">
+            <a href="user.html">
+                <img id="userAvatar" src="" alt="user avatar">
+            </a>
+        </div>
+        <input class="col-1" type="text">
+    </nav>
     <input type="text" id="invoer">
 	<button onclick="run()">go</button>
     <div id = "data-container"></div>
