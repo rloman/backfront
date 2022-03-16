@@ -1,11 +1,15 @@
 .list__item {
     text-align: center;
+    width: 275px;
 }
 
 .list__item img {
     width: 200px;
 }
 
-li{
+ul{
     list-style-type: none;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
 }
