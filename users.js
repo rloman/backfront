@@ -71,7 +71,6 @@ async function run() {
 run();
 
 function setUserAvatar(user) {
-    console.log(user.avatar);
 
     document.getElementById("userAvatar").setAttribute("src", user.avatar)
 }

@@ -8,24 +8,32 @@
     <title>Bordspel</title>
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
-    <!-- <script type="module" src="users.js"></script> -->
+    <script src="users.js"></script>
 </head>
 
 <body>
     <header>
         <div class="row">
-            <div class="col-9">LOGO</div>
-            <div class="col-3">
-                <a href="user.html">
-                    <img id="userAvatar" src="" alt="user avatar">
+            <div class="col-9">
+                <a href="index.html">
+                    LOGO
                 </a>
-                <input type="text" id="invoer">
+            </div>
+            <div class="col-3">
+                <div class="col-3 p-n">
+                    <a href="user.html">
+                        <img id="userAvatar" src="" alt="user avatar">
+                    </a>
+                </div>             
+                <div class="col-9 p-r-n">
+                    <input type="text" id="invoer" onkeydown="return checkEnter(event.key)" placeholder="Zoek naar spellen...">
+                </div> 
             </div>
         </div>
     </header>
     <main>
-        <div id = "data-container">            
-
+        <div id="data-container">            
+            <!---->
         </div>
     </main>
 </body>
