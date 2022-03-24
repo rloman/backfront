@@ -1,17 +1,14 @@
-window.addEventListener('DOMContentLoaded', () => {    
-	const invoer = document.getElementById("invoer");
-	invoer.addEventListener("keyup", function(event) {
-		if (event.keyCode === 13) {
-		 event.preventDefault();
-		 run();
-		}
-	  });
-});
-
-async function fetchGames() {
+function checkEnter(key) {
     const input = document.getElementById("invoer").value;
 
-    const response = await fetch("https://api.boardgameatlas.com/api/search?name="+input+"&client_id=JLBr5npPhV");
+    if (key === "Enter" && input != "") {
+        listGames(input);
+    }
+}
+
+async function fetchGames(zoekterm) {
+
+    const response = await fetch("https://api.boardgameatlas.com/api/search?name="+zoekterm+"&client_id=JLBr5npPhV");
     const result = await response.json();
     console.log(result);
 
@@ -22,12 +19,15 @@ async function fetchGames() {
 			publisher: item.publisher,
         };
     });
-    //console.log(mappedData);
     return mappedData;
 }
 
-async function run() {
-    const games = await fetchGames();
+async function listGames(zoekOpdracht) {
+    const games = await fetchGames(zoekOpdracht);
+
+    if (window.location.href.indexOf("index.html") == -1) {
+        const main = document.querySelector("main").innerHTML = '<div id="data-container"><!----></div>';
+    }
 
     const container = document.getElementById("data-container");
     while (container.firstChild)

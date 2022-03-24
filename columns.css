@@ -46,17 +46,33 @@ body {
 [class*="col-"] {
     float: left;
     padding: 0 12px;
+    display: flex;
+    align-items: center;
 }
 
 .row {
     position: relative;
     float: left;
-    width: 70%;
-    margin: 0 15%;
+    width: 80%;
+    margin: 0 10%;
+    display: flex;
+    align-items: center;
 }
 
 .row::after {
     content: "";
     clear: both;
     display: table;
+}
+
+.p-l-n {
+    padding-left: 0;
+}
+
+.p-r-n {
+    padding-right: 0;
+}
+
+.p-n {
+    padding: 0;
 }

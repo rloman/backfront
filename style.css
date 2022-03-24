@@ -1,5 +1,9 @@
 @import url("columns.css");
 
+a {
+    text-decoration: none;
+}
+
 a.overlay {
     position: absolute;
     top: 0;
@@ -7,7 +11,6 @@ a.overlay {
     bottom: 0;
     right: 0;
     opacity: 0;
-    text-decoration: none;
     z-index: 999;
 }
 
@@ -30,6 +33,23 @@ a.overlay {
     width: 200px;
 }
 
+input {
+    border: 0;
+    width: 100%;
+    font-size: 1em;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    font-weight: 400;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    padding: 9px 32px 8px 8px;
+    background-image: url(https://untappd.akamaized.net/assets/v3/images/header_search_icon.png);
+    background-repeat: no-repeat;
+    background-position: 96% center;
+    background-size: 18px 18px;
+    outline: 0;
+}
+
 ul {
     list-style-type: none;
     display: flex;
@@ -42,4 +62,12 @@ header {
     height: 150px;
     background-color: #fcfcfc;
     box-shadow: rgba(0, 0, 0, 0.514) 0px 0px 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#userAvatar {
+    width: 100%;
+    border-radius: 50%;
 }
