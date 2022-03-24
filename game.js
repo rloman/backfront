@@ -5,7 +5,6 @@ async function fetchGame() {
     
     const response = await fetch("https://api.boardgameatlas.com/api/search?name="+game+"&exact=true&client_id=JLBr5npPhV");
     const result = await response.json();
-    //console.log(result);
     
     const mappedData = result.games.map((item) => {
         return {
@@ -27,14 +26,11 @@ async function build() {
     container.appendChild(gameInfo);
     gameInfo.classList.add("col-9");
  
-    game.forEach((game) => {
-        gameInfo.innerHTML += `
-            <p>
-                ${game.name}
-    
-            </p>
-        `;
-    });
+    gameInfo.innerHTML += `
+        <p>
+            ${game[0].name}
+        </p>
+    `;
 }
 
 window.addEventListener('DOMContentLoaded', () => {
