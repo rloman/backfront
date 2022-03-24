@@ -44,6 +44,7 @@ async function run() {
         });
         localStorage.setItem("user", JSON.stringify(selectedUser));
         setUserAvatar(selectedUser);
+        setUserData(selectedUser);
     });
 
     const container = document.getElementsByTagName("nav");
@@ -73,4 +74,22 @@ run();
 function setUserAvatar(user) {
 
     document.getElementById("userAvatar").setAttribute("src", user.avatar)
+}
+
+function setUserData(user) {
+    const container = document.getElementById("userdata");
+    // Cleanup
+    while (container.firstChild)
+        container.removeChild(container.lastChild);
+
+    const usersinfo = document.createElement("div");
+    container.appendChild(usersinfo);
+    usersinfo.classList.add("col-9");
+    usersinfo.innerHTML += `
+            <p>
+                ${user.firstName}
+                ${user.password}<br/>
+                ${user.email}
+            </p>
+        `;
 }
