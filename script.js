@@ -33,7 +33,7 @@ async function listGames(zoekOpdracht) {
     while (container.firstChild)
         container.removeChild(container.lastChild);
     const unorderedListEl = document.createElement("ul");
-    unorderedListEl.classList.add("list","row");
+    unorderedListEl.classList.add("innerWrapper","vijf");
 
     games.forEach((game) => {
 		let publisher = false;
