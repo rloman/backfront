@@ -1,9 +1,9 @@
 async function fetchGame() {
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    const game = urlParams.get('name')    
+    const game = urlParams.get('id')    
     
-    const response = await fetch("https://api.boardgameatlas.com/api/search?name="+game+"&exact=true&client_id=JLBr5npPhV");
+    const response = await fetch("https://api.boardgameatlas.com/api/search?ids="+game+"&client_id=JLBr5npPhV");
     const result = await response.json();
     
     const mappedData = result.games.map((item) => {
@@ -20,20 +20,21 @@ async function fetchGame() {
 async function build() {
     const game = await fetchGame();
 
-    const container = document.getElementById("displayGame");
-    const gameInfo = document.createElement("div");
-    const existingCol= document.getElementById("existingCol");
-    container.insertBefore(gameInfo,existingCol);
-    gameInfo.classList.add("innerWrapper","eenDrie");
+    // const gameInfo = document.createElement("div");
+    // const existingCol= document.getElementById("existingCol");
+    // container.insertBefore(gameInfo,existingCol);
+    // gameInfo.classList.add("innerWrapper","eenDrie");
+    
+    const gameInfo = document.getElementById("gameInfo");
+
 
 
     game.forEach((game) => {
-        console.log(game.publisher.name);
 		let publisher = false;
 		if(game.publisher.name != undefined) {
 			publisher = true;
 		}
-        gameInfo.innerHTML += `
+        gameInfo.innerHTML = `
             <img src="${game.image}"/>
             <div>
                 <h3>
@@ -44,10 +45,7 @@ async function build() {
             <p class="totDrie">
                 ${game.description}
             </p>
-            <button onclick="checkIn()">
-                Check in
-            </button>
-        `;
+        ` + gameInfo.innerHTML;
     });
 }
 
