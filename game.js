@@ -49,29 +49,30 @@ async function build() {
             </button>
         `;
     });
-
- 
-    // gameInfo.innerHTML += `
-    //     <img class="col-2 p-n" src="${game[0].image}"/>
-    //     <div class="col-10">
-    //         <h3>
-    //             ${game[0].name}
-    //         </h3>
-    //         <a href="www.${game[0].publisher}.com">${game[0].publisher}</a>
-    //     </div>    
-    //     <p class="totDrie">
-    //         ${game[0].description}
-    //     </p>
-    //     <button onclick="checkIn()">
-    //         Check in
-    //     </button>
-    // `;
 }
 
 window.addEventListener('DOMContentLoaded', () => {
      build();
 });
 
-function checkIn() {
-    alert('check')
+async function checkIn() {
+    const game = await fetchGame();
+
+    const endPoint = await fetch("../newCheckIn/{id}", {
+        method: "POST",
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            bordspel: game[0].name,
+            locatie: "",
+            win: true,
+            float: 0.0,
+            review: ""
+        })
+    });
+    const content = await endPoint.json();
+
+    console.log(content);
 }

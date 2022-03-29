@@ -71,6 +71,20 @@ header {
     align-items: center;
 }
 
+h1,
+h2,
+h3 {
+    font-family: "Sansita Swashed";
+    font-style: normal;
+}
+
+p,
+button,
+input,
+option {
+    font-family: "Cantarell", sans-serif;
+}
+
 img {
     width: 100%;
 }
@@ -81,7 +95,7 @@ img {
     max-width: 90%;
 }
 
-#displayGame {
+#displayGame > div {
     background-color: #fff;
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.116) 0px 0px 6px;
