@@ -1,6 +1,10 @@
+@import url("https://fonts.googleapis.com/css2?family=Cantarell:ital,wght@0,400;0,700;1,400;1,700&family=Sansita+Swashed:wght@400;600;700&display=swap");
+
 body {
     margin: 0;
     background-color: #fafafa;
+    font-family: "Cantarell", sans-serif;
+    font-style: italic;
 }
 
 * {
