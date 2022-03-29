@@ -14,6 +14,7 @@ async function fetchGames(zoekterm) {
 
     const mappedData = result.games.map((item) => {
         return {
+            id: item.id,
             name: item.name,
             image: item.thumb_url,
 			publisher: item.publisher,
@@ -26,7 +27,7 @@ async function listGames(zoekOpdracht) {
     const games = await fetchGames(zoekOpdracht);
 
     if (window.location.href.indexOf("index.html") == -1) {
-        const main = document.querySelector("main").innerHTML = '<div id="data-container"><!----></div>';
+        document.querySelector("main").innerHTML = '<div id="data-container"><!----></div>';
     }
 
     const container = document.getElementById("data-container");
@@ -42,7 +43,7 @@ async function listGames(zoekOpdracht) {
 		}
         unorderedListEl.innerHTML += `
 			<li class="list__item">
-				<a class="overlay" href="game.html?name=${game.name}"></a>
+				<a class="overlay" href="game.html?id=${game.id}"></a>
 				<h3>${game.name}</h3>
 				${publisher ? "<p>" + game.publisher + "</p>" : ""}				
 				<img src="${game.image}"/>
