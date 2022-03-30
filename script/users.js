@@ -4,9 +4,7 @@ async function fetchUsers() {
 
     const mappedData = result.data.map((item) => {
         return {
-            email: item.email,
             firstName: item.first_name,
-            password: item.last_name,
             avatar: item.avatar
         };
     });
@@ -73,54 +71,12 @@ async function run() {
         }
         saveId();
         setUserAvatar(selectedUser);
-        setUserData(selectedUser);
     });
-
-    const container = document.getElementsByTagName("nav");
-    const profileImg = document.createElement("div");
-    profileImg.classList.add("profile");
-
-    if (userLoggedIn = true) {
-
-    } else {
-
-    }
-
-
-    users.forEach((user) => {
-        profileImg.innerHTML += `
-        <li class="list__item">
-          <p>${user.first_name}</p>
-          <img src="${user.avatar}"/>
-        </li>
-      `;
-    });
-
-    //container.appendChild(unorderedListEl);
 }
 run();
 
 function setUserAvatar(user) {
-
     document.getElementById("userAvatar").setAttribute("src", user.avatar)
-}
-
-function setUserData(user) {
-    const container = document.getElementById("userdata");
-    // Cleanup
-    while (container.firstChild)
-        container.removeChild(container.lastChild);
-
-    const usersinfo = document.createElement("div");
-    container.appendChild(usersinfo);
-    usersinfo.classList.add("col-9");
-    usersinfo.innerHTML += `
-            <p>
-                ${user.firstName}
-                ${user.password}<br/>
-                ${user.email}
-            </p>
-        `;
 }
 
 async function logIn(user) {
