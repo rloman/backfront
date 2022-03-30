@@ -27,7 +27,7 @@ async function listGames(zoekOpdracht) {
     const games = await fetchGames(zoekOpdracht);
 
     if (window.location.href.indexOf("index.html") == -1) {
-        document.querySelector("main").innerHTML = '<div id="data-container"><!----></div>';
+        document.querySelector("main").innerHTML = '<div id="data-container" class="wrapper"><!----></div>';
     }
 
     const container = document.getElementById("data-container");
