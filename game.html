@@ -38,7 +38,7 @@
         <div id="displayGame" class="wrapper drieEen">
             <div id="gameInfo" class="innerWrapper eenDrie">
 
-                <a href="#M"  id="modalTrigger">
+                <a href="#M" onclick="showModal()" id="modalTrigger">
                     <button>Check in</button>
                 </a>
             </div>            
@@ -50,36 +50,54 @@
     <div id="M" class="modal">
         <div class="modalContent">
             <h3>Spel in checken</h3>
-            <form action="" method="post">
+            <form action="" method="post" id="checkinForm">
+                <p>Waar heb je gespeeld?</p>
+                <input type="text" placeholder="locatie">
                 <p>Heb je gewonnen?</p>
                 <input type="radio" name="win" id="gewonnen">
                 <label for="gewonnen">Gewonnen</label><br>
                 <input type="radio" name="win" id="verloren">
                 <label for="verloren">Verloren</label>
                 <p>Wat vond je ervan?</p>
-                <div id="slider-step"></div>
-                <div id="slider-step-value"></div>
+                <div id="sliderC" class="wrapper drieEen">
+                    <div id="slider-step"></div>
+                    <div>
+                        <div id="slider-step-value"></div>van de 5
+                    </div>
+                </div>                
             </form>
+            <p>Laat jouw mening over het spel horen.</p>
+            <textarea name="review" form="checkinForm" maxlength="500" cols="70" rows="8" placeholder="review"></textarea><br><br>
+            <input type="submit" form="checkinForm" value="Check in">
         </div>
         <a href="#" class="closeModal"></a>
     </div>
     <script>
-        var stepSlider = document.getElementById('slider-step');
+        let firstTime = true;
+        function showModal() {
 
-        noUiSlider.create(stepSlider, {
-            start: [0],
-            step: 0.25,
-            range: {
-                'min': [0],
-                'max': [5]
+            if (firstTime == true) {
+                var stepSlider = document.getElementById('slider-step');
+        
+                noUiSlider.create(stepSlider, {
+                    start: [0],
+                    step: 0.25,
+                    range: {
+                        'min': [0],
+                        'max': [5]
+                    },
+                    tooltips: true
+                });
+        
+                var stepSliderValueElement = document.getElementById('slider-step-value');
+        
+                stepSlider.noUiSlider.on('update', function (values, handle) {
+                    stepSliderValueElement.innerHTML = values[handle];
+                });
+
+                firstTime = false;
             }
-        });
-
-        var stepSliderValueElement = document.getElementById('slider-step-value');
-
-        stepSlider.noUiSlider.on('update', function (values, handle) {
-            stepSliderValueElement.innerHTML = values[handle];
-        });
+        }
     </script>    
 </body>
 

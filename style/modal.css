@@ -22,14 +22,6 @@
     cursor: pointer;
 }
 
-.closebutton {
-    color: red;
-    text-decoration: none;
-    font-size: 30px;
-    margin: 0 auto;
-    display: table;
-}
-
 .modal:target {
     opacity: 1;
     pointer-events: auto;
@@ -56,6 +48,14 @@
     justify-content: center;
 }
 
-.modal-content {
-    overflow-y: auto;
+#sliderC {
+    margin-top: 48px;
+}
+
+textarea {
+    resize: none;
+}
+
+form > input[type="text"] {
+    width: 50%;
 }
