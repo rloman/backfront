@@ -5,6 +5,8 @@ async function fetchUsers() {
     const mappedData = result.data.map((item) => {
         return {
             firstName: item.first_name,
+            password: item.last_name,
+            email: item.email,
             avatar: item.avatar
         };
     });
