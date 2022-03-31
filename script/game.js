@@ -56,7 +56,7 @@ window.addEventListener('DOMContentLoaded', () => {
 async function checkIn() {
     const game = await fetchGame();
 
-    const endPoint = await fetch("../newCheckIn/{id}", {
+    const endPoint = await fetch("https://bordspelbackend.azurewebsites.net/newCheckIn/"+localStorage.getItem("ID"), {
         method: "POST",
         headers: {
             "Accept": "application/json",
@@ -64,13 +64,10 @@ async function checkIn() {
         },
         body: JSON.stringify({
             bordspel: game[0].name,
-            locatie: "",
-            win: true,
-            float: 0.0,
-            review: ""
+            locatie: document.getElementById("locatieText").value,
+            win: document.getElementById("gewonnen").checked,
+            rating: document.getElementById("slider-step-value").innerText,
+            review: document.getElementById("reviewText").value
         })
     });
-    const content = await endPoint.json();
-
-    console.log(content);
 }
