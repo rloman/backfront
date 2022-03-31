@@ -1,0 +1,22 @@
+<script>
+    function ffophalen(){
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function (){
+            if(this.readyState == 4){
+                console.log(this.responseText);
+                var felixding = JSON.parse(this.responseText);
+                document.getElementById("ophaalimage").src = "data:image/png;base64,"+felixding.foto;
+            }
+        }
+        xhr.open("GET","http://localhost:8082/testfotofelix/1",true);
+        xhr.send();
+    }
+</script>
+
+
+<button onclick="ffophalen()">Ophalen</button>
+
+<div id="ophaaluitkomst">
+
+</div>
+<img id="ophaalimage">
