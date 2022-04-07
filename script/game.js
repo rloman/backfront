@@ -56,7 +56,7 @@ window.addEventListener('DOMContentLoaded', () => {
 async function checkIn() {
     const game = await fetchGame();
 
-    const endPoint = await fetch("https://bordspelbackend.azurewebsites.net/newCheckIn/"+localStorage.getItem("ID"), {
+    const endPoint = await fetch("https://bordspelbackend.azurewebsites.net/api/gebruikers/newcheckin/"+localStorage.getItem("ID"), {
         method: "POST",
         headers: {
             "Accept": "application/json",

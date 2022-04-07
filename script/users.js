@@ -1,6 +1,8 @@
 async function fetchUsers() {
     const response = await fetch("https://reqres.in/api/users?page=2");
     const result = await response.json();
+    
+    // HIER: zorg dat je de Users uit onze database (ook) fetcht.
 
     const mappedData = result.data.map((item) => {
         return {
@@ -13,11 +15,31 @@ async function fetchUsers() {
     return mappedData;
 }
 
+// deze functie haalt de gebruikersDTOs op om weer te geven op een gebruikerspagina
+async function fetchUserDTO(currUser){
+    const response = await fetch("https://bordspelbackend.azurewebsites.net/api/gebruikers/vind/"+currUser.firstName);
+    const result = await response.json();
+    const profiel = document.getElementById("profiel");
+    profiel.innerHTML = `
+        <div>
+        <div style="float: left">
+        <img id=profilePicture src="${result.profilePicture}"/> 
+        </div>
+        <h1>${result.displayNaam}</h1>
+        </div>
+        `
+    const info = document.getElementById("userdata").children[0];
+    info.innerText = result.beschrijving;
+    const checkin = document.getElementById("checkins").children[0];
+    checkin.innerText = JSON.stringify(result.checkins);
+    
+}
+
 async function run() {
     const users = await fetchUsers();
-
+    
     for (const user of users) {
-        const endPoint = await fetch("https://bordspelbackend.azurewebsites.net/new", {
+        const endPoint = await fetch("https://bordspelbackend.azurewebsites.net/api/gebruikers", {
             method: "POST",
             headers: {
                 "Accept": "application/json",
@@ -44,7 +66,7 @@ async function run() {
     } else {
         currentUser = JSON.parse(currentUser);
 
-        setUserAvatar(currentUser);
+        setUser(currentUser);
         let temp = `<select id="userSelect">`;
         users.forEach((user) => {
             let selected = false;
@@ -65,10 +87,8 @@ async function run() {
             localStorage.setItem("user", JSON.stringify(selectedUser));
             logIn(selectedUser, (id) => {
                 localStorage.setItem("ID",id);
-    
-                window.location.reload();
             });
-            setUserAvatar(selectedUser);
+            setUser(selectedUser);    
         });
     }
 }
@@ -79,7 +99,7 @@ function setUserAvatar(user) {
 }
 
 function logIn(user, afterLogin) {
-    fetch("https://bordspelbackend.azurewebsites.net/login/"+user.email, {
+    fetch("https://bordspelbackend.azurewebsites.net/api/gebruikers/login/"+user.email, {
         method: "GET",
         headers: {
             "Accept": "application/json",
@@ -87,5 +107,11 @@ function logIn(user, afterLogin) {
         },
     })
     .then(response => response.json())
-    .then(data => afterLogin(data));
+    .then(data => afterLogin(data))
+    //.then(dto => fetchUserDTO(dto));
+}
+
+function setUser(user){
+    setUserAvatar(user);
+    fetchUserDTO(user);
 }
